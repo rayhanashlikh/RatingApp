@@ -11,11 +11,27 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::view('/wow', 'layouts.master');
+
+Route::group(['prefix'=>'admin'], function () {
+    Route::view('/', 'admin.dashboard');
+    Route::resource('places', 'PlaceController');
+    Route::group(['prefix'=>'users'], function () {
+        Route::view('/', 'admin.users.index');
+    }); 
+    Route::group(['prefix'=>'ratings'], function () {
+        Route::view('/', 'admin.ratings.index');
+    });
+});
+
+
+Route::group(['prefix'=>''], function () {
+    Route::view('/', 'layouts.master');
+});
+
