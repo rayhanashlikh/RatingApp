@@ -50,7 +50,7 @@
 
                 </div>
                 <div class="col-lg-6">
-                    <label for="picture">Picture</label>
+                    <label for="picture">Picture <br> <img src="{{ asset('storage/img/' . $places->picture) }}" width="250px" height="150px"></label> <br>
                     <input id="picture" type="file" name="picture" placeholder="Picture" 
                         class="form-control @error('picture') is-invalid @enderror" value="{{$places->picture}}">
                     @error('picture')

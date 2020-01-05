@@ -216,13 +216,17 @@
             </div>
           </li>
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="{{asset('files/assets/img/avatar/avatar-1.png')}}" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div></a>
+            <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
-              <a href="/home" class="dropdown-item has-icon">
-                <i class="far fa-user"></i> Akun
-              </a>  
+                   <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+                   {{ __('Logout') }}
+                   </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form>
             </div>
           </li>
         </ul>
@@ -249,7 +253,6 @@
                 <ul class="dropdown-menu">
                   <li><a class="nav-link" href="/admin/places">Place</a></li>
                   <li><a class="nav-link" href="/admin/users">User</a></li>
-                  <li><a class="nav-link" href="/admin/rating">Rating</a></li>
                 </ul>
               </li>
             </ul>   

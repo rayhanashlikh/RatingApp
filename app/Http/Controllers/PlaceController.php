@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Place;
+use Ramsey\Uuid\Uuid;
 
 class PlaceController extends Controller
 {
@@ -41,15 +42,25 @@ class PlaceController extends Controller
             'location' => 'required|string',
             'date_opened' => 'required|date',
             'description' => 'required|string',
-            'picture' => 'required|string'
+            'picture' => 'image|mimes:jpeg,png,jpg,gif,svg'
         ]);
 
         $places = new Place();
+
+        if ($request->hasFile('picture')){
+            $image = $request->file('picture');
+            $uuid4 = Uuid::uuid4();
+            $name = $uuid4->toString().'.'.$image->getClientOriginalExtension();
+            $destinationPath = storage_path('/app/public/img');
+            $imagePath = $destinationPath. "/". $name;
+            $image->move($destinationPath, $name);
+            $places->picture = $name;
+        }
+
         $places->place_name = $request->place_name;
         $places->location = $request->location;
         $places->date_opened = $request->date_opened;
         $places->description = $request->description;
-        $places->picture = $request->picture;
         $places->save();
 
         return redirect('admin/places')->with('status', 'Succesfully added');
@@ -88,19 +99,31 @@ class PlaceController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'place_name' => 'required|string',
-            'location' => 'required|string',
+            'place_name' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
             'date_opened' => 'required|date',
-            'description' => 'required|string',
-            'picture' => 'required|string'
+            'description' => 'required|string|max:255',
+            'picture' => 'image|mimes:jpeg,png,jpg,gif,svg,bmp'
         ]);
         
         $places = Place::find($id);
+
+        if ($request->hasFile('picture')){
+            $image = $request->file('picture');
+            $uuid4 = Uuid::uuid4();
+            $name = $uuid4->toString().'.'.$image->getClientOriginalExtension();
+            $destinationPath = storage_path('/app/public/img');
+            $imagePath = $destinationPath. "/". $name;
+            $image->move($destinationPath, $name);
+            $places->picture = $name;
+        } else {
+            $places->picture = $places->picture;
+        }
+
         $places->place_name = $request->place_name;
         $places->location = $request->location;
         $places->date_opened = $request->date_opened;
         $places->description = $request->description;
-        $places->picture = $request->picture;
         $places->save();
         return redirect('/admin/places')->with('status', 'successfully updated');
     }

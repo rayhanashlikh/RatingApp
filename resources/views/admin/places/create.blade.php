@@ -13,7 +13,7 @@
 @section('content') 
     <div class="container p-4">
     <h1 class="text-center">Add Place</h1>
-        <form class="" action="/admin/places" method="post">
+        <form class="" action="/admin/places" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
             <div class="row">
                 <div class="col-lg-6 form-group">
@@ -55,7 +55,6 @@
                     @error('picture')
                         <div class="invalid-feed">{{ $message }}</div>
                     @enderror
-
                 </div>
             </div><br>
         <input type="submit" name="submit" value="Add Place" class="btn btn-md btn-primary">

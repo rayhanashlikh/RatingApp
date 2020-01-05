@@ -1,6 +1,6 @@
 @extends('layouts.stisla')
 @section('header')
-    Hello World
+    Hello, {{ Auth::user()->name }}!
 @endsection
 @section('content')
     

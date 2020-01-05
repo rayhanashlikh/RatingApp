@@ -19,16 +19,25 @@ User
                 <th>Nama</th>
                 <th>Email</th>
                 <th>Opsi</th>
+                <?php
+                    $nomor = 1;
+                ?>
             </tr>
+            @foreach($users as $user)
             <tr>
-                <td>1</td>
-                <td>Nama User</td>
-                <td>Email User</td>
+                <td>{{$nomor++}}</td>
+                <td>{{$user->name}}</td>
+                <td>{{$user->email}}</td>
                 <td>
-                <button type="button" class="btn btn-sm btn-danger" name="button"
-                onclick="confirm('Yakin ingin menghapus ?')"> <i class="fa fa-trash"></i> Hapus</button>
+                <form action="users/{{$user->id}}" method="post">
+                @method('delete')
+                {{ csrf_field() }}
+                    <button type="submit" class="btn btn-sm btn-danger" name="button"
+                    onclick="confirm('Yakin ingin menghapus ?')"> <i class="fa fa-trash"></i> Hapus</button>
+                    </form>
                 </td>
             </tr>
+            @endforeach
         </table>
     </div>
 @endsection

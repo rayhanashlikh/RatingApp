@@ -19,19 +19,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix'=>'admin'], function () {
+Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'role:admin']], function () {
     Route::view('/', 'admin.dashboard');
     Route::resource('places', 'PlaceController');
-    Route::group(['prefix'=>'users'], function () {
-        Route::view('/', 'admin.users.index');
-    }); 
-    Route::group(['prefix'=>'ratings'], function () {
-        Route::view('/', 'admin.ratings.index');
-    });
+    Route::resource('users', 'UserController');
 });
 
 
-Route::group(['prefix'=>''], function () {
-    Route::view('/', 'layouts.master');
+Route::get('/', 'IndexController@index');
+
+Route::group(['prefix'=>'places', 'middleware'=>['auth', 'role:client']], function () {
+    Route::get('/detail/{id}', 'IndexController@detail');
 });
 
