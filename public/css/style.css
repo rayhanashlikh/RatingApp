@@ -20,7 +20,6 @@ ul.navbar-nav.ml-auto {
 
 .container .jumbotron h1.display-4 {
     text-align: center;
-    wide
 }
 
 /* Footer */
@@ -102,7 +101,6 @@ ul.navbar-nav.ml-auto {
 
 .footer .footer-content .links ul a:hover {
     color: white;
-    margin-left: 10px;
     transition: all .3s;
 }
 

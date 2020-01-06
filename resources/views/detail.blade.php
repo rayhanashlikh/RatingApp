@@ -1,16 +1,29 @@
 @extends('layouts.master')
+
 @section('css')
+
 <link rel="stylesheet" href="{{asset('css/detail.css')}}">
+
 @endsection
+
 @section('title')
+
 <title>{{$places->place_name}}</title>
+
 @endsection
+
 @section('header')
+
 {{$places->place_name}}
+
 @endsection
+
 @section('subheader')
+
 Posted At {{$places->created_at}} | Updated At {{$places->updated_at}}
+
 @endsection
+
 @section('content')
     <div class="container">
         <div class="image-content">

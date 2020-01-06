@@ -27,7 +27,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-        <a class="navbar-brand" href="Uni Places">Navbar</a>
+        <a class="navbar-brand" href="/">Uni Places</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -100,8 +100,8 @@
                 <div class="social">
                     <a href="https://www.facebook.com/profile.php?id=100011422378877"><i class="fa fa-facebook"></i></a>
                     <a href="https://www.instagram.com/rayhanind"><i class="fa fa-instagram"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                    <a href=""><i class="fa fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/rayhan-ashlikh-598155197/"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://github.com/rayhanashlikh"><i class="fa fa-github"></i></a>
                 </div>
             </div>
             <div class="footer-section links">
